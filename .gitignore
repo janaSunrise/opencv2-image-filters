@@ -1,6 +1,9 @@
 # Python cache
 __pycache__/
 
+# Jupyter notebook checkpoints
+notebook/.ipynb_checkpoints/
+
 # Editor generated files
 .idea/
 .vscode/
