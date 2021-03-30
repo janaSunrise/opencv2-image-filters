@@ -6,8 +6,8 @@ from scipy.interpolate import UnivariateSpline
 
 
 def spread_lookup_table(x, y):
-  spline = UnivariateSpline(x, y)
-  return spline(range(256))
+    spline = UnivariateSpline(x, y)
+    return spline(range(256))
 
 
 def create_loopup_tables():
@@ -27,8 +27,8 @@ def black_white(image):
     return output
 
 
-def invert(image):
-    output = cv2.bitwise_not(copy.deepcopy(image))
+def invert(img):
+    output = cv2.bitwise_not(copy.deepcopy(img))
     return output
 
 
@@ -53,7 +53,7 @@ def sketch_with_edge_detection(img, kernel_size=21):
     img = np.copy(img)
 
     img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    img_gray_blur = cv2.GaussianBlur(img_gray, (3, 3), 0)
+    img_gray_blur = cv2.GaussianBlur(img_gray, (kernel_size, kernel_size), 0)
     edges = cv2.Laplacian(img_gray_blur, cv2.CV_8U, ksize=5)
     edges = 255 - edges
 
@@ -99,7 +99,7 @@ def median_filtering(image):
     return cv2.medianBlur(image, 5)
 
 
-def vignette(image, vignette_scale):
+def vignette(image, vignette_scale=2):
     img = np.copy(image)
     img = np.float32(img)
 
@@ -149,7 +149,7 @@ def saturation(image, saturation_scale=1):
     return output
 
 
-def warm_image(image):    
+def warm(image):
     increase_lookup_table, decrease_lookup_table = create_loopup_tables()
 
     red_channel, green_channel, blue_channel = cv2.split(image)
@@ -158,7 +158,8 @@ def warm_image(image):
 
     return cv2.merge((red_channel, green_channel, blue_channel))
 
-def cold_image(image):
+
+def cold(image):
     increase_lookup_table, decrease_lookup_table = create_loopup_tables()
 
     red_channel, green_channel, blue_channel = cv2.split(image)
