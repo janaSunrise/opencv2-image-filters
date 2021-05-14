@@ -13,7 +13,7 @@ def spread_lookup_table(x, y):
 def create_loopup_tables():
     increase_lookup_table = spread_lookup_table([0, 64, 128, 256], [0, 80, 160, 256])
     decrease_lookup_table = spread_lookup_table([0, 64, 128, 256], [0, 50, 100, 256])
-    
+
     return increase_lookup_table, decrease_lookup_table
 
 
@@ -40,7 +40,9 @@ def blur(img):
 def sketch(img, kernel_size=21):
     img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     img_invert = cv2.bitwise_not(img_gray)
-    img_smoothing = cv2.GaussianBlur(img_invert, (kernel_size, kernel_size), sigmaX=0, sigmaY=0)
+    img_smoothing = cv2.GaussianBlur(
+        img_invert, (kernel_size, kernel_size), sigmaX=0, sigmaY=0
+    )
 
     def dodge(x, y):
         return cv2.divide(x, 255 - y, scale=256)
@@ -67,9 +69,9 @@ def sharpen(image):
 
 
 def sepia(image):
-    kernel = np.array([[0.272, 0.534, 0.131],
-                       [0.349, 0.686, 0.168],
-                       [0.393, 0.769, 0.189]])
+    kernel = np.array(
+        [[0.272, 0.534, 0.131], [0.349, 0.686, 0.168], [0.393, 0.769, 0.189]]
+    )
     return cv2.filter2D(image, -1, kernel)
 
 
@@ -78,9 +80,7 @@ def gaussian_blur(image):
 
 
 def emboss(image):
-    kernel = np.array([[0, -1, -1],
-                       [1, 0, -1],
-                       [1, 1, 0]])
+    kernel = np.array([[0, -1, -1], [1, 0, -1], [1, 1, 0]])
     return cv2.filter2D(image, -1, kernel)
 
 

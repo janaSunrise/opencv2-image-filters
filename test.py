@@ -5,17 +5,29 @@ import cv2
 import filters
 
 filters_list = [
-    "black_white", "invert", "blur",
-    "sketch", "sketch_with_edge_detection",
-    "sharpen", "sepia", "gaussian_blur",
-    "emboss", "image_2d_convolution",
-    "median_filtering", "vignette", "warm",
-    "cold", "cartoon", "moon"
+    "black_white",
+    "invert",
+    "blur",
+    "sketch",
+    "sketch_with_edge_detection",
+    "sharpen",
+    "sepia",
+    "gaussian_blur",
+    "emboss",
+    "image_2d_convolution",
+    "median_filtering",
+    "vignette",
+    "warm",
+    "cold",
+    "cartoon",
+    "moon",
 ]
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     if len(sys.argv) not in [3, 4]:
-        print("Usage: python test.py <FILTER> <IMAGE SRC> <IMAGE DESTINATION(OPTIONAL)>")
+        print(
+            "Usage: python test.py <FILTER> <IMAGE SRC> <IMAGE DESTINATION(OPTIONAL)>"
+        )
         sys.exit(0)
 
     if len(sys.argv) == 3:
